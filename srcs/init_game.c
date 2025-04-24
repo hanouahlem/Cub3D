@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahbey <ahbey@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/16 14:12:12 by ahbey             #+#    #+#             */
+/*   Updated: 2025/04/16 14:12:15 by ahbey            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 
 void	get_pos_player(t_cub *cub)
@@ -80,7 +92,11 @@ void	init_floor_sky(t_cub *cub)
 	char	**my_c;
 
 	my_f = ft_split(cub->maps->f[1], ',');
+	if (my_f == NULL)
+		destroy_all(cub);
 	my_c = ft_split(cub->maps->c[1], ',');
+	if (my_c == NULL)
+		destroy_all(cub);
 	cub->ray->my_sky[0] = ft_atoi(my_c[0]);
 	cub->ray->my_sky[1] = ft_atoi(my_c[1]);
 	cub->ray->my_sky[2] = ft_atoi(my_c[2]);
@@ -106,13 +122,13 @@ void	init_game(t_cub *cub)
 		print_error(cub, "Window Fail", NULL);
 		exit(1);
 	}
-	cub->my_mlx->img_ptr = mlx_new_image(cub->my_mlx->mlx_ptr, SCREEN_W, SCREEN_H);
-    printf("img_ptr %p\n", cub->my_mlx->img_ptr);
-    if (!cub->my_mlx->img_ptr)
+	cub->my_mlx->img_ptr = mlx_new_image(cub->my_mlx->mlx_ptr, SCREEN_W,
+			SCREEN_H);
+	if (!cub->my_mlx->img_ptr)
 		print_error(cub, "Image Fail", NULL);
 	if (init_text(cub) != 0)
 		destroy_all(cub);
-    init_floor_sky(cub);
+	init_floor_sky(cub);
 	get_pos_player(cub);
 	set_directions(cub, cub->maps->player_dir);
 	set_plane(cub, cub->maps->player_dir);

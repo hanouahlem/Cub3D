@@ -6,17 +6,17 @@
 /*   By: ahbey <ahbey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:34:02 by ahbey             #+#    #+#             */
-/*   Updated: 2025/03/26 15:02:20 by ahbey            ###   ########.fr       */
+/*   Updated: 2025/04/18 16:33:40 by ahbey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int close_window(t_cub *cub)
-{
-    destroy_all(cub);
-    return (0);
-}
+// void	ft_secure(char *str)
+// {
+// 	if (str == NULL)
+// 		destroy_all()
+// }
 
 void	free_tab(char **tab)
 {
@@ -55,17 +55,15 @@ void	print_error(t_cub *cub, char *str, char **map_check)
 	exit(1);
 }
 
-int destroy_all(t_cub *cub)
+void	free_my_text(t_cub *cub)
 {
-	// printf("AAAAAAAAAAAAAAAAAA %p\n", cub->my_mlx->img_ptr);
-	mlx_destroy_image(cub->my_mlx->mlx_ptr, cub->my_mlx->img_ptr);
-    if (cub->my_mlx->win_ptr)
-        mlx_destroy_window(cub->my_mlx->mlx_ptr, cub->my_mlx->win_ptr);
-    if (cub->my_mlx->mlx_ptr)
-    {
-        mlx_destroy_display(cub->my_mlx->mlx_ptr);
-        free(cub->my_mlx->mlx_ptr);
-    }
-    print_error(cub, NULL, NULL);
-    return (0);
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (cub->text[i].img_ptr)
+			mlx_destroy_image(cub->my_mlx->mlx_ptr, cub->text[i].img_ptr);
+		i++;
+	}
 }

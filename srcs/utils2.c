@@ -6,27 +6,42 @@
 /*   By: ahbey <ahbey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:41:15 by ahbey             #+#    #+#             */
-/*   Updated: 2025/03/12 14:41:18 by ahbey            ###   ########.fr       */
+/*   Updated: 2025/04/18 22:00:19 by ahbey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int line_is_empty(char *line)
+// int	line_is_empty(char *line)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (line && (line[i] == '\t' || line[i] == ' ' || line[i] == '\n'))
+// 		i++;
+// 	if (line[i])
+// 		return (0);
+// 	return (1);
+// }
+int	line_is_empty(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (line && (line[i] == '\t' || line[i] == ' ' || line[i] == '\n'))
+	if (!line)
+		return (1);
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			return (0);
 		i++;
-	if (line[i])
-		return (0);
+	}
 	return (1);
 }
 
 int	ft_count_times(char *str, char c)
 {
-	int i;
+	int	i;
 	int	res;
 
 	i = 0;
@@ -50,7 +65,7 @@ int	longest_line(t_cub *cub)
 	while (i < cub->lines)
 	{
 		if (len < ft_strlen(cub->maps->my_map[i]))
-		len = ft_strlen(cub->maps->my_map[i]);
+			len = ft_strlen(cub->maps->my_map[i]);
 		i++;
 	}
 	return (len);
@@ -58,8 +73,8 @@ int	longest_line(t_cub *cub)
 
 int	ft_check_nums(char *str)
 {
-	int	i;
-	int	num;
+	int		i;
+	int		num;
 	char	**check_n;
 
 	i = 0;
@@ -77,4 +92,27 @@ int	ft_check_nums(char *str)
 	}
 	free_tab(check_n);
 	return (0);
+}
+
+char	**split_first_keyword(char *line)
+{
+	char	**result;
+	int		start;
+	int		i;
+
+	i = 0;
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+		i++;
+	start = i;
+	while (line[i] && line[i] != ' ' && line[i] != '\t')
+		i++;
+	result = malloc(sizeof(char *) * 3);
+	if (!result)
+		return (NULL);
+	result[0] = ft_substr(line, start, i - start);
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+		i++;
+	result[1] = ft_strdup(&line[i]);
+	result[2] = NULL;
+	return (result);
 }
