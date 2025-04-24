@@ -6,7 +6,7 @@
 /*   By: ahbey <ahbey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 16:43:12 by ahbey             #+#    #+#             */
-/*   Updated: 2025/04/24 16:37:38 by ahbey            ###   ########.fr       */
+/*   Updated: 2025/04/24 16:59:00 by ahbey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-// # include <fcntl.h>
-// # include <math.h>
-// # include <stdio.h>
 
 # define SCREEN_W 1280
 # define SCREEN_H 800
@@ -153,13 +150,11 @@ void				free_my_text(t_cub *cub);
 void				init_game(t_cub *cub);
 
 // GAME
-
 int					moving(t_cub *cub);
 void				rotation(t_cub *cub);
 
 void				my_game(t_cub *cub);
 void				raycaster(t_cub *cub);
-
 void				calculate_ray_dir(t_cub *cub, int x);
 void				calculate_delta_dist(t_ray *ray);
 void				calculate_step_dist(t_mlx *my_mlx, t_ray *ray);
