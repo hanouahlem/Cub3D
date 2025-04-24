@@ -6,7 +6,7 @@
 /*   By: ahbey <ahbey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 16:43:12 by ahbey             #+#    #+#             */
-/*   Updated: 2025/04/17 15:34:07 by ahbey            ###   ########.fr       */
+/*   Updated: 2025/04/24 16:37:38 by ahbey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,7 @@
 # define SCREEN_H 800
 
 /* KEYCODES */
-# define KEY_ESC 65307   // exit
-# define KEY_W 122       // move forwards
-# define KEY_A 113       // move left
-# define KEY_S 115       // move backwards
-# define KEY_D 100       // move right
-# define KEY_LEFT 65361  // look left
-# define KEY_RIGHT 65363 // look right
-# define KEY_CTRL 65507  // ctrl
+# define KEY_CTRL 65507
 
 # define PLAYER_SPEED 0.015
 # define ROTATION_SPEED 0.024
